@@ -19,6 +19,11 @@ const onFormSubmit = (e) => {
     }
 };
 
+const removeAllButton = () => {
+    app.options = [];
+    render();
+};
+
 const appRoot = document.getElementById("app");
 
 const render = () => {
@@ -28,6 +33,7 @@ const render = () => {
             {app.subtitle && <p>{app.subtitle}</p>}
             {app.options.length > 0 ? <p>Here are your options</p> : <p>No options</p>}
             <p>{app.options.length}</p>
+            <button onClick={removeAllButton}>Remove All</button>
             <ol>
                 <li>Item one</li>
                 <li>Item two</li>
