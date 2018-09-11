@@ -8,24 +8,18 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var obj = {
-    name: "Vikram",
-    getName: function getName() {
-        return this.name;
-    }
-};
-
-var getName = obj.getName.bind({ name: "Andrew" });
-
-console.log(getName());
-
 var IndecisionApp = function (_React$Component) {
     _inherits(IndecisionApp, _React$Component);
 
-    function IndecisionApp() {
+    function IndecisionApp(props) {
         _classCallCheck(this, IndecisionApp);
 
-        return _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).call(this, props));
+
+        _this.state = {
+            options: ["Thing one", "Thing two", "Thing three"]
+        };
+        return _this;
     }
 
     _createClass(IndecisionApp, [{
@@ -33,14 +27,13 @@ var IndecisionApp = function (_React$Component) {
         value: function render() {
             var title = "Indecision";
             var subtitle = "Put your life in the hands of a computer";
-            var options = ["Thing one", "Thing two", "Thing four"];
 
             return React.createElement(
                 "div",
                 null,
                 React.createElement(Header, { title: title, subtitle: subtitle }),
                 React.createElement(Action, null),
-                React.createElement(Options, { options: options }),
+                React.createElement(Options, { options: this.state.options }),
                 React.createElement(AddOption, null)
             );
         }
