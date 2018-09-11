@@ -166,6 +166,10 @@ class AddOption extends React.Component {
         
         this.setState(() => ({ error }));
 
+        if (!error)
+        {
+            e.target.elements.option.value = '';
+        }
     }
     render() {
         return (
