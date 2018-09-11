@@ -1,17 +1,21 @@
-// Stateless functional component
-
 class IndecisionApp extends React.Component {
     constructor(props) {
         super(props);
         this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
         this.handlePick = this.handlePick.bind(this);
         this.handleAddOption = this.handleAddOption.bind(this);
+        this.handleDeleteOption = this.handleDeleteOption.bind(this);
         this.state = {
             options: props.options
         };
     }
     handleDeleteOptions() {
         this.setState(() => ({ options: [] }))
+    }
+    handleDeleteOption(optionToRemove) {
+        this.setState((prevState) => ({
+            options: prevState.options.filter((option) => optionToRemove !== option)
+        }));
     }
     handlePick() {
         const random_num = Math.floor(Math.random() * this.state.options.length);
@@ -44,6 +48,7 @@ class IndecisionApp extends React.Component {
                 <Options 
                     options={this.state.options} 
                     handleDeleteOptions={this.handleDeleteOptions}
+                    handleDeleteOption={this.handleDeleteOption}
                 />
                 <AddOption 
                     handleAddOption={this.handleAddOption}
@@ -89,7 +94,13 @@ const Options = (props) => {
             <button onClick={props.handleDeleteOptions}>Remove All</button>
             <ol>
                 {
-                    props.options.map(option => <Option key={option} optionText={option} />)
+                    props.options.map(option => (
+                        <Option 
+                            key={option} 
+                            optionText={option}
+                            handleDeleteOption={props.handleDeleteOption}
+                        />
+                    ))
                 }
             </ol>
         </div>
@@ -99,7 +110,14 @@ const Options = (props) => {
 const Option = (props) => {
     return (
         <div>
-            Option: {props.optionText}
+            {props.optionText}
+            <button 
+                onClick={(e) => {
+                    props.handleDeleteOption(props.optionText);
+                }}
+            >
+                Remove
+            </button>
         </div>
     )
 };
