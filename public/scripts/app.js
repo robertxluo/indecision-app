@@ -111,7 +111,7 @@ var Options = function (_React$Component4) {
                 React.createElement(
                     "ol",
                     null,
-                    "Options component here"
+                    React.createElement(Option, null)
                 )
             );
         }
@@ -120,8 +120,31 @@ var Options = function (_React$Component4) {
     return Options;
 }(React.Component);
 
-var AddOption = function (_React$Component5) {
-    _inherits(AddOption, _React$Component5);
+var Option = function (_React$Component5) {
+    _inherits(Option, _React$Component5);
+
+    function Option() {
+        _classCallCheck(this, Option);
+
+        return _possibleConstructorReturn(this, (Option.__proto__ || Object.getPrototypeOf(Option)).apply(this, arguments));
+    }
+
+    _createClass(Option, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                "Option component here"
+            );
+        }
+    }]);
+
+    return Option;
+}(React.Component);
+
+var AddOption = function (_React$Component6) {
+    _inherits(AddOption, _React$Component6);
 
     function AddOption() {
         _classCallCheck(this, AddOption);

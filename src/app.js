@@ -37,9 +37,19 @@ class Options extends React.Component {
         return (
             <div>
                 <ol>
-                    Options component here
+                    <Option />
                 </ol>
             </div>
+        )
+    }
+}
+
+class Option extends React.Component {
+    render() {
+        return (
+        <div>
+            Option component here 
+        </div>
         )
     }
 }
