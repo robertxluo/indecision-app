@@ -1,9 +1,17 @@
 class IndecisionApp extends React.Component {
     constructor(props) {
         super(props);
+        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
         this.state = {
             options: ["Thing one", "Thing two", "Thing three"]
         };
+    }
+    handleDeleteOptions() {
+        this.setState(() => {
+            return {
+                options: []
+            };
+        })
     }
     render() {
         const title = "Indecision";
@@ -12,8 +20,11 @@ class IndecisionApp extends React.Component {
         return (
             <div>
                 <Header title={title} subtitle={subtitle} />
-                <Action />
-                <Options options={this.state.options} />
+                <Action hasOptions={this.state.options.length > 0}/>
+                <Options 
+                    options={this.state.options} 
+                    handleDeleteOptions={this.handleDeleteOptions}
+                />
                 <AddOption />
             </div>
         )
@@ -39,25 +50,22 @@ class Action extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.handlePick}>What should I do?</button>
+                <button 
+                    onClick={this.handlePick}
+                    disabled={!this.props.hasOptions}
+                >
+                    What should I do?
+                </button>
             </div>
         )
     }
 }
 
 class Options extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleRemoveAll = this.handleRemoveAll.bind(this);
-    }
-    handleRemoveAll() {
-        console.log(this.props.options);
-        //alert('Remove all')
-    }
     render() {
         return (
             <div>
-                <button onClick={this.handleRemoveAll}>Remove All</button>
+                <button onClick={this.props.handleDeleteOptions}>Remove All</button>
                 <ol>
                     {
                         this.props.options.map(option => <Option key={option} optionText={option} />)
