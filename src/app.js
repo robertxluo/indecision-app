@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AddOption from './components/AddOption';
-import Option from './components/Option';
 import Action from './components/Action';
 import Header from './components/Header';
+import Options from './components/Options';
 
 
 class IndecisionApp extends React.Component {
@@ -93,25 +93,5 @@ class IndecisionApp extends React.Component {
         )
     }
 }
-
-const Options = (props) => {
-    return (
-        <div>
-            <button onClick={props.handleDeleteOptions}>Remove All</button>
-            {props.options.length === 0 && <p>Please add an option to get started!</p>}
-            <ol>
-                {
-                    props.options.map(option => (
-                        <Option 
-                            key={option} 
-                            optionText={option}
-                            handleDeleteOption={props.handleDeleteOption}
-                        />
-                    ))
-                }
-            </ol>
-        </div>
-    )
-};
 
 ReactDOM.render(<IndecisionApp />, document.getElementById("app"));
