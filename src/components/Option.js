@@ -2,7 +2,7 @@ import React from 'react';
 
 const Option = (props) => (
     <div className="option">
-        {props.optionText}
+        {<li>{props.optionText}</li>}
         <button
             className="button button--link"
             onClick={(e) => {
